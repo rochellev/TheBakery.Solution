@@ -1,10 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Bakery.Models;
 
-namespace Project.Test
+namespace Bakery.Tests
 {
     [TestClass]
-    public class ProgramTest
+    public class BreadTest
     {
         [TestMethod]
         public void ConstructorTest_True()
