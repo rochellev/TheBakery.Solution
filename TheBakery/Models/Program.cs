@@ -1,28 +1,34 @@
 using System;
 using static System.Console;
 using System.Collections.Generic;
+using Bakery.Models;
+
 class Program
 {
     private static Dictionary<string, int> itemsOrdered = new Dictionary<string, int>(){
         {"bread", 0},
         {"pastry", 0}
     };
-    private int _total = 0;
+    private static int _total = 0;
+
     public static void Main()
     {
+        Bread bakeryBread = new Bread();
+        Pastry bakeryPastry = new Pastry();
         while (true)
         {
-            OutputMenue();
+            OutputMenu();
             PurchaseSequence();
             WriteLine("Are you ready to checkout? (y/n)");
             string response = ReadLine();
-            if(response.ToLower() == "n")
+            if (response.ToLower() == "y")
             {
-                PurchaseSequence();
-            }
-            else
-            {
-                // calculate total
+                _total += bakeryBread.CalculateBreadCost(itemsOrdered["bread"]);
+                _total += bakeryPastry.CalculatePastryCost(itemsOrdered["pastry"]);
+                WriteLine("-----------------------");
+                WriteLine($"Your total is ${_total}");
+                WriteLine("-----------------------");
+                break;
             }
         }
     }
@@ -43,7 +49,7 @@ class Program
         }
     }
 
-    public static void OutputMenue()
+    public static void OutputMenu()
     {
         WriteLine("~~~ The Bakery Menu ~~~");
         WriteLine("Bread .............. $5");
